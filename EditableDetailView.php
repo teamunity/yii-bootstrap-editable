@@ -11,7 +11,7 @@
  * @version 1.0.0
  */
  
-Yii::import('ext.editable.EditableField');
+Yii::import('ext.yii-bootstrap-editable.EditableField');
 Yii::import('zii.widgets.CDetailView');
 
 class EditableDetailView extends CDetailView

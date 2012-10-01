@@ -81,10 +81,12 @@ class EditableField extends CWidget
         if ($this->type === null) {
             $this->type = 'text';
             //try detect type from metadata.
+            if(isset($this->model->tableSchema)){
             if (array_key_exists($this->attribute, $this->model->tableSchema->columns)) {
                 $dbType = $this->model->tableSchema->columns[$this->attribute]->dbType;
                 if($dbType == 'date' || $dbType == 'datetime') $this->type = 'date';
                 if(stripos($dbType, 'text') !== false) $this->type = 'textarea';
+            }
             }
         }
 
@@ -277,7 +279,7 @@ class EditableField extends CWidget
             $bootstrap->registerCorePlugins(); //enable bootstrap js if needed
         }
 
-        $assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('ext.editable.assets'), false, 1); //publish excluding datepicker locales
+        $assetsUrl = Yii::app()->assetManager->publish(Yii::getPathOfAlias('ext.yii-bootstrap-editable.assets'), false, 1); //publish excluding datepicker locales
         Yii::app()->getClientScript()->registerCssFile($assetsUrl . '/css/bootstrap-editable.css');
         Yii::app()->clientScript->registerScriptFile($assetsUrl . '/js/bootstrap-editable.js', CClientScript::POS_END);
 

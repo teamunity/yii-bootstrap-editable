@@ -11,7 +11,7 @@
  * @version 1.0.0
  */
 
-Yii::import('ext.editable.EditableField');
+Yii::import('ext.yii-bootstrap-editable.EditableField');
 Yii::import('zii.widgets.grid.CDataColumn');
 
 class EditableColumn extends CDataColumn
@@ -24,7 +24,7 @@ class EditableColumn extends CDataColumn
 
     public function init()
     {
-        if (!$this->grid->dataProvider instanceOf CActiveDataProvider) {
+        if (!is_a($this->grid->dataProvider, 'CDataProvider')) {
             throw new CException('EditableColumn can be applied only to grid based on CActiveDataProvider');
         }
         if (!$this->name) {
@@ -59,7 +59,7 @@ class EditableColumn extends CDataColumn
             $options['encode'] = false;
         }
        
-        $editable = $this->grid->controller->createWidget('EditableField', $options);
+        $editable = $this->grid->controller->createWidget('ext.yii-bootstrap-editable.EditableField', $options);
 
         //manually make selector non unique to match all cells in column
         $selector = get_class($editable->model) . '_' . $editable->attribute;
