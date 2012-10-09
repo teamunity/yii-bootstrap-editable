@@ -276,7 +276,7 @@ class EditableField extends CWidget
     {
         //if bootstrap extension installed, but no js registered -> register it!
         if (($bootstrap = yii::app()->getComponent('bootstrap')) && !$bootstrap->enableJS) {
-            $bootstrap->registerCorePlugins(); //enable bootstrap js if needed
+            //$bootstrap->registerCorePlugins(); //enable bootstrap js if needed
         }
 
         $assetsUrl = Yii::app()->assetManager->publish(Yii::getPathOfAlias('ext.yii-bootstrap-editable.assets'), false, 1); //publish excluding datepicker locales
