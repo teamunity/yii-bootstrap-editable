@@ -68,7 +68,13 @@ class EditableSaver extends CComponent
         if (empty($modelClass)) {
             throw new CException(Yii::t('editable', 'You should provide modelClass in constructor of EditableSaver.'));
         }
+        if(is_a($modelClass,'CModel')){
+            $this->model = $modelClass;
+            $this->modelClass = get_class($modelClass);
+        }
+        else {
         $this->modelClass = ucfirst($modelClass);
+        }
     }
 
     /**
@@ -89,9 +95,10 @@ class EditableSaver extends CComponent
         if (empty($this->primaryKey)) {
             throw new CException(Yii::t('editable','Property "primaryKey" should be defined.'));
         }
-
+        $klass = $this->modelClass;
         //loading model
-        $this->model = CActiveRecord::model($this->modelClass)->findByPk($this->primaryKey);
+        $this->model = $klass::model()->findByPk($this->primaryKey);
+
         if (!$this->model) {
             throw new CException(Yii::t('editable', 'Model {class} not found by primary key "{pk}"', array(
                '{class}'=>get_class($this->model), '{pk}'=>$this->primaryKey)));
