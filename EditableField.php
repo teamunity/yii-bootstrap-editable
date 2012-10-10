@@ -281,6 +281,7 @@ class EditableField extends CWidget
 
         $assetsUrl = Yii::app()->assetManager->publish(Yii::getPathOfAlias('ext.yii-bootstrap-editable.assets'), false, 1); //publish excluding datepicker locales
         Yii::app()->getClientScript()->registerCssFile($assetsUrl . '/css/bootstrap-editable.css');
+        Yii::app()->clientScript->registerScriptFile($assetsUrl . '/js/underbars.min.js', CClientScript::POS_END);
         Yii::app()->clientScript->registerScriptFile($assetsUrl . '/js/bootstrap-editable.js', CClientScript::POS_END);
 
         //include locale for datepicker

@@ -113,4 +113,10 @@ class EditableColumn extends CDataColumn
     {
          return $model->isAttributeSafe($this->name) && (!array_key_exists('enabled', $this->editable) || $this->editable['enabled'] === true);
     }
+
+    public function getDataCellContent($row,$data) {
+        ob_start();
+        $this->renderDataCellContent($row,$data);
+        return ob_get_clean();
+    }
 }

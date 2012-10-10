@@ -20,7 +20,8 @@ class EditableDetailView extends CDetailView
     public $url = '';
     public $numColumns = 1;
     //set bootstrap css
-    public $htmlOptions = array('class'=> 'table table-bordered table-striped table-hover table-condensed');
+    protected $defaultHtmlOptions =  array('class'=> 'table table-bordered table-striped table-hover table-condensed');
+    public $htmlOptions = array();
 
     public function init()
     {
@@ -29,6 +30,9 @@ class EditableDetailView extends CDetailView
         }
 
         parent::init();
+        $classes = explode(" ", $this->defaultHtmlOptions['class']);
+        EBootstrap::mergeClass($this->htmlOptions, $classes);
+
     }
 
     protected function renderItem($options, $templateData)
@@ -163,4 +167,5 @@ class EditableDetailView extends CDetailView
     }
 
 }
+
 
