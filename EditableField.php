@@ -320,6 +320,6 @@ class EditableField extends CWidget
     
     public function getSelector()
     {
-        return get_class($this->model) . '_' . $this->attribute . ($this->model->primaryKey ? '_' . $this->model->primaryKey : '_new');
+        return get_class($this->model) . '_' . str_replace(".","__", $this->attribute) . ($this->model->primaryKey ? '_' . $this->model->primaryKey : '_new');
     }
 }

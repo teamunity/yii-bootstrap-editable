@@ -1122,15 +1122,19 @@
          },
          init: function(options) {
             //set popular options directly from settings or data-* attributes
-            var directOptions = mergeKeys({}, this.settings, ['format', 'weekStart', 'startView']);
+             var directOptions = mergeKeys({}, this.settings.field, ['format', 'weekStart', 'startView']);
 
             //overriding datepicker config (as by default jQuery merge is not recursive)
             this.settings.field.datepicker = $.extend({}, $.fn.editable.types.date.datepicker, directOptions, options.datepicker);
-
+            if (this.settings.field.format == null){
+                this.settings.field.format = 'yyyy-mm-dd';              
+                
+            }
             //by default viewformat equals to format
             if(!this.settings.field.viewformat) {
-               this.settings.field.viewformat = this.settings.field.datepicker.format;
+               this.settings.field.viewformat = this.settings.field.format;
             }
+            
          },
          renderInput: function() {
             this.$input = $(this.settings.field.template);
