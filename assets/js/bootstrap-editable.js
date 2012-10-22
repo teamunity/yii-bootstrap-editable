@@ -156,7 +156,8 @@
                 this.$element.popover({
                     trigger  :'manual',
                     placement:'top',
-                    content  :this.settings.loading
+                    content  :this.settings.loading,
+                    html: true
                 });
 
                 this.$element.data('popover').tip().addClass('editable-popover');
@@ -569,7 +570,7 @@
     $.fn.editable.types = {
         //for all types
         defaults:{
-            inputclass:'span2',
+            inputclass:'',
             placeholder:null,
             init:function (options) {},
             // this function called every time popover shown. Should set value of this.$input
@@ -750,7 +751,7 @@
         //textarea
         textarea:{
             template:'<textarea rows="8"></textarea>',
-            inputclass:'span3',
+            inputclass:'span10',
             renderInput:function () {
                 this.$input = $(this.settings.template);
                 this.$input.addClass(this.settings.inputclass);
@@ -852,7 +853,7 @@
     (function($) {
    $.fn.editable.models = {
       fieldType: {
-         inputclass: 'span2',
+         inputclass: '',
          placeholder: null,
          template: '<input type="text">',
          source: null,
@@ -1071,7 +1072,7 @@
 
       types.textarea = $.extend(true, {}, dflt, {
          template: '<textarea rows="8"></textarea>',
-         inputclass: 'span3',
+         inputclass: 'span10',
          renderInput: function() {
             this.$input = $(this.settings.field.template);
             this.$input.addClass(this.settings.field.inputclass);
